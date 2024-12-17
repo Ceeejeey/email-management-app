@@ -1,0 +1,120 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+  }
+  
+  /* Dashboard Layout */
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Use full viewport height */
+    width: 1530px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    height: 60px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar h1 {
+    color: #ffc107;
+  }
+  
+  .navbar .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .navbar .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  /* Sidebar and Main Content */
+  .dashboard-content {
+    display: flex;
+    flex: 1; /* Occupy remaining space */
+    overflow: hidden;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #222;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+  }
+  
+  .sidebar li {
+    cursor: pointer;
+    padding: 10px;
+    color: #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar li:hover, .sidebar li.active {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    overflow-y: auto;
+  }
+  
+  .contacts, .groups, .templates {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Drop Zone */
+  .drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .drop-zone:hover {
+    background-color: #e0e0e0;
+  }
+  

@@ -1,0 +1,36 @@
+# Node modules and dependencies (if applicable)
+node_modules/
+npm-debug.log
+
+# Local environment files
+.env
+
+# MySQL data
+/opt/lampp/var/mysql/*
+
+# Linux generated files
+*~
+
+# Logs and temporary files
+*.log
+*.cache
+*.temp
+tmp/
+log/
+logs/
+
+# IDE config files
+*.sublime-workspace
+*.vscode/
+
+# LAMPP and system binaries
+/opt/lampp/sbin/
+/opt/lampp/bin/
+
+# Exclude compiled code, if applicable
+*.compiled
+*.class
+
+# Ignore uploads or user-generated content (if any)
+/uploads/
+/public/storage/
