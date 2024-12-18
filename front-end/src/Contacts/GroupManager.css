@@ -1,0 +1,294 @@
+.groups-manager {
+  max-width: 1200px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.groups-manager h2 {
+  text-align: center;
+  color: #444;
+}
+
+.groups-manager p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.group-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.group-form input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.group-form input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.contact-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.contact-selection p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-selection label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contact-selection input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.group-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.group-form button:hover {
+  background-color: #0056b3;
+}
+
+.groups-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.groups-list th,
+.groups-list td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.groups-list th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.groups-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.groups-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+.groups-list button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.groups-list button:first-of-type {
+  background-color: #28a745;
+}
+
+.groups-list button:first-of-type:hover {
+  background-color: #218838;
+}
+
+.groups-list button:last-of-type {
+  background-color: #dc3545;
+}
+
+.groups-list button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+.groups-list td {
+  vertical-align: middle;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin: 0 0 15px 0;
+  color: #333;
+  text-align: center;
+}
+
+.modal .group-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modal .group-form input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.modal .contact-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.modal .contact-selection p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.modal .contact-selection label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.modal .contact-selection input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.modal .contact-selection label:hover {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal .contact-selection label input[type="checkbox"]:checked {
+  background-color: #007bff;
+}
+
+.modal button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.modal button:hover {
+  background: #218838;
+}
+
+.modal .cancel-button {
+  background: #dc3545;
+  margin-left: 10px;
+}
+
+.modal .cancel-button:hover {
+  background: #a71d2a;
+}
+
+.create-group-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin: 20px 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.create-group-button:hover {
+  background-color: #218838;
+}
+
+.create-group-button:active {
+  background-color: #1e7e34;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .create-group-button {
+    width: 100%;
+    text-align: center;
+  }
+}

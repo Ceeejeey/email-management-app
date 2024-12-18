@@ -30,7 +30,7 @@ app.get('/favicon.ico', (req, res) => res.status(204).end()); // Ignore favicon 
 // Use routes
 app.use("/api", require("./controllers/authController"));
 app.use("/api", require("./controllers/contactController"));
-
+app.use("/api", require("./controllers/groupsController"));
 
 // Set the server to listen on a specific port
 const PORT = process.env.PORT || 3000;

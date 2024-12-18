@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContactsManager from '../Contacts/ContactsManager';
+import GroupsManager from '../Contacts/GroupManager';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -66,9 +67,7 @@ const Dashboard = () => {
 
                     {activeTab === 'groups' && (
                         <div className="groups">
-                            <h2>Manage Contact Groups</h2>
-                            <p>Add, edit, or remove contact groups here.</p>
-                            {/* Add form or table for managing groups */}
+                            <GroupsManager />
                         </div>
                     )}
 
