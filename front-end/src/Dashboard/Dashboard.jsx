@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ContactsManager from '../Contacts/ContactsManager';
 import GroupsManager from '../Contacts/GroupManager';
+import TemplateManager from '../emailTemplates/TemplateManager'
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -72,23 +73,11 @@ const Dashboard = () => {
                     )}
 
                     {activeTab === 'templates' && (
-                        <div
-                            className="templates"
-                            onDragOver={handleDragOver}
-                            onDrop={handleDrop}
-                        >
-                            <h2>Email Templates</h2>
-                            <p>Drag and drop your email template files here:</p>
-                            <div className="drop-zone">
-                                <p>Drop files here or click to upload</p>
-                            </div>
-                            <ul className="template-list">
-                                {templates.map((template, index) => (
-                                    <li key={index}>{template}</li>
-                                ))}
-                            </ul>
+                        <div className="templates">
+                            <TemplateManager />
                         </div>
                     )}
+
                 </main>
             </div>
         </div>
