@@ -1,0 +1,247 @@
+.template-manager {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f7f9fc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .template-manager h2 {
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .template-manager p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .file-upload input[type="file"] {
+    display: none;
+  }
+  
+  .file-upload .upload-zone {
+    width: 100%;
+    max-width: 1000px;
+    height: 120px;
+    border: 2px dashed #797979;
+    border-radius: 12px;
+    background-color: #eaf3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #767676;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .file-upload .upload-zone:hover {
+    background-color: #d6e9ff;
+    border-color: #b3b4b5;
+  }
+  
+  .file-upload input[type="text"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-top: 10px;
+    outline: none;
+  }
+  
+  .file-upload input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+  }
+  
+  textarea {
+    width: 100%;
+    max-width: 1000px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 20px;
+    resize: vertical;
+  }
+  
+  textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+  }
+  
+  
+  #editButton{
+    padding: 10px 20px;
+    background-color: #17c300;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #editButton:hover {
+    background-color: #007e1b;
+  }
+  #deleteButton{
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #deleteButton:hover {
+    background-color: #b80000;
+  }
+  #saveButton{
+    padding: 10px 20px;
+    background-color: #00a60b;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #saveButton:hover {
+    background-color: #007e1b;
+  }
+  
+  
+  .template-list {
+    margin-top: 20px;
+  }
+  
+  .template-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .template-list table thead {
+    background-color: #a0a0a0;
+    color: #fff;
+  }
+  
+  .template-list table thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .template-list table tbody td {
+    padding: 15px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .template-list table tbody tr:hover {
+    background-color: #f7f9fc;
+  }
+  
+  .template-list button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  .template-list button:hover {
+    background-color: #0056b3;
+  }
+  .modal {
+    position: fixed;
+    top: 10%;
+    left: 40%;
+    width: 100%;
+    height: 85%;
+    background-color: rgba(61, 61, 61, 0.13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+    width: 100%;
+    max-width: 90%;
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content input,
+  .modal-content textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .modal-content button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  .modal-content button + button {
+    margin-left: 10px;
+    background-color: #6c757d;
+  }
+  
+  .modal-content button + button:hover {
+    background-color: #5a6268;
+  }
+  #sendButton{
+    padding: 10px 20px;
+    background-color: #e4b701;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #sendButton:hover {
+    background-color: #a5a500;
+  }
