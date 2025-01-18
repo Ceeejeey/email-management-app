@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../utils/axiosConfig'; // Custom axios instance with credentials
+import Cookies from 'js-cookie'; // Import js-cookie
+import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
 import './TemplateManager.css';
 
-const TemplateManager = () => {
+const TemplateManager = ({accessToken}) => {
   const [templates, setTemplates] = useState([]); // Store templates
   const [selectedFile, setSelectedFile] = useState(null); // Store uploaded file
   const [templateContent, setTemplateContent] = useState(''); // Template content for viewing/editing
@@ -12,9 +14,25 @@ const TemplateManager = () => {
   const [emailSubject, setEmailSubject] = useState(''); // Email subject for sending
   const [emailBody, setEmailBody] = useState(''); // Email body for sending
   const [recipients, setRecipients] = useState(''); // Recipients (comma-separated or group)
+  const [userEmail, setUserEmail] = useState('');
   
   // Fetch templates on mount
   useEffect(() => {
+    const decodeToken = () => {
+      try {
+        // Retrieve the token from cookies
+        const token =  accessToken// Use the cookie name where the token is stored
+        console.log('token:', token);
+        if (token) {
+          const decoded = jwtDecode(token); // Decode the token
+          setUserEmail(decoded.email); // Set user email (adjust based on your token structure)
+        }
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    };
+
+    decodeToken();
     fetchTemplates();
   }, []);
 
@@ -112,6 +130,7 @@ const TemplateManager = () => {
 
     try {
       await axios.post('/api/send-email', {
+        senderEmail: userEmail,
         subject: emailSubject,
         body: emailBody,
         recipients: recipients.split(','), // Send recipients as an array

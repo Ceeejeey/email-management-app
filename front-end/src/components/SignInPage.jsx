@@ -21,9 +21,10 @@ const SignInPage = () => {
         withCredentials: true,
       });
 
-      const { token, user } = response.data;
+      const { accessToken, user } = response.data;
+      console.log('data:', response.data);
 
-      localStorage.setItem('authToken', token);
+      localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('user', JSON.stringify(user));
 
       setMessage('Sign-in successful! Redirecting...');

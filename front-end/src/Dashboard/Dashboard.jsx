@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import ContactsManager from '../Contacts/ContactsManager';
 import GroupsManager from '../Contacts/GroupManager';
 import TemplateManager from '../emailTemplates/TemplateManager'
+import Cookies from 'js-cookie';
 import './Dashboard.css';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('contacts');
     const [draggedFiles, setDraggedFiles] = useState([]);
     const [templates, setTemplates] = useState([]);
+    const [accessToken, setaccessToken] = useState('');
+
+    useEffect(() => {
+        // Retrieve the token from cookies
+        const token = localStorage.getItem('accessToken');
+        console.log('token:', token);
+        if (token) {
+          setaccessToken(token);
+        }
+      }, []);
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -74,7 +85,7 @@ const Dashboard = () => {
 
                     {activeTab === 'templates' && (
                         <div className="templates">
-                            <TemplateManager />
+                            <TemplateManager accessToken={accessToken}/>
                         </div>
                     )}
 
