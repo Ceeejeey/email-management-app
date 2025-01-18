@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^1.7.9",
+    "js_cookie": "^1.0.0",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-modal": "^3.16.3",

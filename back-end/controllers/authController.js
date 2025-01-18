@@ -142,9 +142,9 @@ router.post('/signin', async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Strict'
+            sameSite: 'Strict',
         });
-
+       
         return res.json({ accessToken, user, message: 'Sign-in successful' });
 
     } catch (error) {
