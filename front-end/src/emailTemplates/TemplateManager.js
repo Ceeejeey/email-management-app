@@ -215,7 +215,7 @@ const TemplateManager = ({accessToken}) => {
 
       {/* Send Template Modal */}
       {isSendModalOpen && (
-        <div className="modal">
+        <div className="template-modal">
           <div className="modal-content">
             <h3>Send Email</h3>
             <input
