@@ -6,6 +6,7 @@ import SignupPage from './components/SignupPage';
 import SignInPage from './components/SignInPage';
 import VerifyEmail from './components/VerifyEmail';
 import Dashboard from './Dashboard/Dashboard';
+import ProfilePage from './profile/profile';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );
