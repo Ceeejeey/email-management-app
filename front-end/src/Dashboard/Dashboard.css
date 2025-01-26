@@ -117,4 +117,50 @@
   .drop-zone:hover {
     background-color: #e0e0e0;
   }
-  
+  /* Dropdown Styles */
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile img {
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+.dropdown.show {
+  display: flex;
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown li:hover {
+  background-color: #f2f2f2;
+  color: #3498db;
+}

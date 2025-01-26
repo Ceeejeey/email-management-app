@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer')
 
-router.post('/api/send-email', async (req, res) => {
+router.post('/send-email', async (req, res) => {
     const { senderEmail, senderPassword, subject, body, recipients } = req.body;
+    console.log(req.body)
 
     console.log('senderEmail:', senderEmail);
     if (!senderEmail || !senderPassword || !subject || !body || !recipients || recipients.length === 0) {

@@ -1,0 +1,160 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile-page {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #eaeaea;
+    margin: 2rem 0;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+  }
+  
+  input {
+    padding: 0.75rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.4);
+    outline: none;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(to right, #3498db, #2980b9);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(41, 128, 185, 0.2);
+  }
+  
+  button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 6px rgba(41, 128, 185, 0.1);
+  }
+  
+  button[disabled] {
+    background: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  /* Message Styling */
+  .message {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #27ae60;
+  }
+  
+  .message.error {
+    color: #e74c3c;
+  }
+  
+  .message.loading {
+    color: #f1c40f;
+  }
+  
+  /* Google Connect */
+  .google-connect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .google-connect h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+  }
+  
+  .google-connect button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(to right, #f39c12, #d35400);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .google-connect button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(211, 84, 0, 0.2);
+  }
+  
+  .google-connect button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 6px rgba(211, 84, 0, 0.1);
+  }
+  
+  .google-connect button svg {
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-page {
+      padding: 1.5rem;
+    }
+  
+    button {
+      width: 100%;
+    }
+  
+    input {
+      width: 100%;
+    }
+  }
+  
