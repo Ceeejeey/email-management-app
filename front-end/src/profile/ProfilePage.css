@@ -60,7 +60,7 @@ body {
     outline: none;
   }
   
-  button {
+  .profile-button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: 600;
@@ -72,17 +72,17 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  button:hover {
+  .profile-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px rgba(41, 128, 185, 0.2);
   }
   
-  button:active {
+  .profile-button:active {
     transform: translateY(1px);
     box-shadow: 0 4px 6px rgba(41, 128, 185, 0.1);
   }
   
-  button[disabled] {
+  .profile-button[disabled] {
     background: #bdc3c7;
     cursor: not-allowed;
   }
@@ -116,7 +116,7 @@ body {
     color: #2c3e50;
   }
   
-  .google-connect button {
+  .google-connect button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,7 +149,7 @@ body {
       padding: 1.5rem;
     }
   
-    button {
+    profile-button {
       width: 100%;
     }
   

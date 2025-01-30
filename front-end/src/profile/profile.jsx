@@ -38,13 +38,23 @@ const ProfilePage = () => {
 
   const handleConnectGoogle = async () => {
     try {
-      const response = await axios.get('/api/auth/google', { withCredentials: true });
-      window.location.href = response.data.authUrl; // Redirect to Google OAuth2 consent screen
+      // Step 1: Get the Google Auth URL from your backend
+      const response = await axios.get('/api/auth/google', { withCredentials: true }
+        );
+  
+      if (response.data.authUrl) {
+        // Redirect the user to the Google OAuth2 consent screen
+        window.location.href = response.data.authUrl;
+      } else {
+        console.error('No authUrl provided in the response');
+        setMessage('Failed to initiate Google account connection.');
+      }
     } catch (error) {
       console.error('Error connecting Google account:', error);
       setMessage('Failed to connect Google account.');
     }
   };
+  
 
   return (
     <div className="profile-page">
@@ -74,7 +84,7 @@ const ProfilePage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleSaveChanges}>
+        <button type="button" onClick={handleSaveChanges} className="profile-button">
           Save Changes
         </button>
       </form>
