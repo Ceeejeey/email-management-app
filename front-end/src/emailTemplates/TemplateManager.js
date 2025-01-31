@@ -15,6 +15,7 @@ const TemplateManager = ({accessToken}) => {
   const [emailBody, setEmailBody] = useState(''); // Email body for sending
   const [recipients, setRecipients] = useState(''); // Recipients (comma-separated or group)
   const [userEmail, setUserEmail] = useState('');
+  const [userId, setUserId] = useState('');
   
   // Fetch templates on mount
   useEffect(() => {
@@ -26,6 +27,7 @@ const TemplateManager = ({accessToken}) => {
         if (token) {
           const decoded = jwtDecode(token); // Decode the token
           setUserEmail(decoded.email); // Set user email (adjust based on your token structure)
+          setUserId(decoded.id); // Set user ID (adjust based on your token
         }
       } catch (error) {
         console.error('Error decoding token:', error);
@@ -134,6 +136,7 @@ const TemplateManager = ({accessToken}) => {
         subject: emailSubject,
         body: emailBody,
         recipients: recipients.split(','), // Send recipients as an array
+        userId: userId,
       }, { withCredentials: true });
 
       alert('Email sent successfully!');
