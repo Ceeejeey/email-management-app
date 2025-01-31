@@ -61,27 +61,30 @@ const ProfilePage = () => {
       <h1>User Profile</h1>
       <form>
         <div className="form-group">
-          <label>Name:</label>
+          <label className='profile-labels'>Name:</label>
           <input
             type="text"
             value={user.name}
             onChange={(e) => setUser({ ...user, name: e.target.value })}
+            className='profile-input'
           />
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label className='profile-labels'>Email:</label>
           <input
             type="email"
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
+            className='profile-input'
           />
         </div>
         <div className="form-group">
-          <label>New Password:</label>
+          <label className='profile-labels'>New Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className='profile-input'
           />
         </div>
         <button type="button" onClick={handleSaveChanges} className="profile-button">

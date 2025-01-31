@@ -40,19 +40,20 @@
   border-color: #007bff;
 }
 
-.contact-selection {
+.contact--selection {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin: 10px 0;
 }
 
-.contact-selection p {
+.contact--selection p {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.contact-selection label {
+.contact--selection .contact-label {
+  margin: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -60,7 +61,7 @@
   cursor: pointer;
 }
 
-.contact-selection input[type="checkbox"] {
+.contact--selection #contact-checkbox {
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -193,7 +194,7 @@
   border-color: #007bff;
 }
 
-.modal .contact-selection {
+.modal .contact--selection {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -203,14 +204,14 @@
   padding-right: 10px;
 }
 
-.modal .contact-selection p {
+.modal .contact--selection p {
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 1.1rem;
   color: #333;
 }
 
-.modal .contact-selection label {
+.modal .contact--selection label {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
@@ -219,18 +220,18 @@
   cursor: pointer;
 }
 
-.modal .contact-selection input[type="checkbox"] {
+.modal .contact--selection input[type="checkbox"] {
   margin-right: 5px;
   transform: scale(1.2);
   cursor: pointer;
 }
 
-.modal .contact-selection label:hover {
+.modal .contact--selection label:hover {
   background-color: #f1f1f1;
   border-radius: 4px;
 }
 
-.modal .contact-selection label input[type="checkbox"]:checked {
+.modal .contact--selection label input[type="checkbox"]:checked {
   background-color: #007bff;
 }
 

@@ -1,160 +1,113 @@
-/* General Styles */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .profile-page {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-  }
-  
-  hr {
-    border: none;
-    border-top: 1px solid #eaeaea;
-    margin: 2rem 0;
-  }
-  
-  /* Form Styles */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  label {
-    font-size: 0.95rem;
-    color: #7f8c8d;
-  }
-  
-  input {
-    padding: 0.75rem;
-    border: 1px solid #dfe6e9;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #2980b9;
-    box-shadow: 0 0 5px rgba(41, 128, 185, 0.4);
-    outline: none;
-  }
-  
-  .profile-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(to right, #3498db, #2980b9);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .profile-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 12px rgba(41, 128, 185, 0.2);
-  }
-  
-  .profile-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 6px rgba(41, 128, 185, 0.1);
-  }
-  
-  .profile-button[disabled] {
-    background: #bdc3c7;
-    cursor: not-allowed;
-  }
-  
-  /* Message Styling */
-  .message {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #27ae60;
-  }
-  
-  .message.error {
-    color: #e74c3c;
-  }
-  
-  .message.loading {
-    color: #f1c40f;
-  }
-  
-  /* Google Connect */
-  .google-connect {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .google-connect h2 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-  }
-  
-  .google-connect button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(to right, #f39c12, #d35400);
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .google-connect button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 12px rgba(211, 84, 0, 0.2);
-  }
-  
-  .google-connect button:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 6px rgba(211, 84, 0, 0.1);
-  }
-  
-  .google-connect button svg {
-    font-size: 1.2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .profile-page {
-      padding: 1.5rem;
-    }
-  
-    profile-button {
-      width: 100%;
-    }
-  
-    input {
-      width: 100%;
-    }
-  }
-  
+/* ProfilePage.css */
+
+.profile-page {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.profile-labels {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+
+.profile-input:focus {
+  border-color: #4a90e2;
+}
+
+.profile-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4a90e2, #007aff);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.profile-button:hover {
+  background: linear-gradient(135deg, #357abd, #005ecb);
+}
+
+hr {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.google-connect h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+}
+
+.google-connect button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #db4437;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.google-connect button:hover {
+  background: #c1351d;
+}
+
+p {
+  font-size: 14px;
+  color: #28a745;
+  margin-top: 15px;
+}
+.google-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  cursor: default;
+  padding: 10px;
+}
+
+.google-logo {
+  width: 16px;
+  height: 16px;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import ContactsManager from '../Contacts/ContactsManager';
 import GroupsManager from '../Contacts/GroupManager';
 import TemplateManager from '../emailTemplates/TemplateManager';
@@ -12,6 +12,8 @@ const Dashboard = () => {
   const [accessToken, setAccessToken] = useState('');
   const [userName, setUserName] = useState('John Doe'); // Example user name
   const [showDropdown, setShowDropdown] = useState(false);
+  const [googleTokens, setGoogleTokens] = useState(null);
+  const dropdownRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -27,6 +29,15 @@ const Dashboard = () => {
 
     if (user && user.name) {
       setUserName(user.name);
+    }
+    if (user && user.googleTokens) {
+      setGoogleTokens(user.googleTokens);
+    }
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+
     }
   }, []);
 
@@ -57,16 +68,39 @@ const Dashboard = () => {
       {/* Navbar */}
       <nav className="navbar">
         <h1>Dashboard</h1>
-        <div className="profile" onClick={toggleDropdown}>
-          <img src="https://via.placeholder.com/40" alt="User Profile" />
-          <span>{userName}</span>
-          <div className={`dropdown ${showDropdown ? 'show' : ''}`}>
-            <ul>
-              <li onClick={() => navigate('/profile')}>Profile</li>
-              <li onClick={handleLogout}>Logout</li>
-            </ul>
+        <div className="profile-container" ref={dropdownRef}>
+          {/* Profile Info (Click to Toggle Dropdown) */}
+          <div className="profile-card" onClick={toggleDropdown}>
+           
+            <span className="user-name">{userName || 'User'}</span>
           </div>
+
+          {/* Dropdown Menu (Only Visible When Clicked) */}
+          {showDropdown && (
+            <div className="profile-dropdown">
+              <ul>
+                <li onClick={() => navigate('/profile')}>
+                  <i className="fas fa-user"></i> Profile
+                </li>
+                <li onClick={handleLogout}>
+                  <i className="fas fa-sign-out-alt"></i> Logout
+                </li>
+                <li className="google-status">
+                  {googleTokens ? (
+                    <>
+                      <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
+                        alt="Google Connected" className="google-logo" />
+                      <span>Connected</span>
+                    </>
+                  ) : (
+                    <span>Not Connected</span>
+                  )}
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
+
       </nav>
 
       <div className="dashboard-content">
