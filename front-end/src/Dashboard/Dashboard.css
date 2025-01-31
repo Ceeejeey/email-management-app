@@ -117,50 +117,93 @@
   .drop-zone:hover {
     background-color: #e0e0e0;
   }
-  /* Dropdown Styles */
-.profile {
+ /* Profile Container */
+.profile-container {
   position: relative;
+  display: inline-block;
+}
+
+/* Profile Card (Clickable Section) */
+.profile-card {
   display: flex;
   align-items: center;
+  gap: 10px;
   cursor: pointer;
-}
-
-.profile img {
-  border-radius: 50%;
-  margin-right: 0.5rem;
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
+  padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 150px;
-  display: none;
-  flex-direction: column;
-  padding: 0.5rem 0;
+  transition: background 0.3s ease;
 }
 
-.dropdown.show {
-  display: flex;
+.profile-card:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.dropdown ul {
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Dropdown Menu */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  padding: 10px 0;
+  z-index: 100;
+}
+
+.profile-dropdown ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
-.dropdown li {
-  padding: 0.75rem 1rem;
+.profile-dropdown ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ddd;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-.dropdown li:hover {
-  background-color: #f2f2f2;
-  color: #3498db;
+.profile-dropdown ul li i {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.profile-dropdown ul li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+/* Google Connection Status */
+.google-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.google-logo {
+  width: 18px;
+  height: 18px;
 }

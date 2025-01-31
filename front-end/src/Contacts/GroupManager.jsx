@@ -267,15 +267,16 @@ const GroupsManager = () => {
           />
 
           {/* Contact Selection */}
-          <div className="contact-selection">
+          <div className="contact--selection">
             <p>Select Contacts:</p>
             {contacts && contacts.length > 0 ? (
               contacts.map((contact) => (
-                <label key={contact.id}>
+                <label key={contact.id} className='contact-label'>
                   <input
                     type="checkbox"
                     checked={groupForm.contactIds.includes(contact.id)}
                     onChange={() => handleContactSelection(contact.id)}
+                    id='contact-checkbox'
                   />
                   {contact.name || 'Unknown Name'} {contact.email ? `(${contact.email})` : ''}
                 </label>
