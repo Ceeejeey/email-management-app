@@ -12,14 +12,14 @@ const oauth2Client = new google.auth.OAuth2(
 const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
 
 router.post('/send-email', async (req, res) => {
-  const { subject, body, recipients, userId } = req.body;
+  const { subject, body, recipients, userId} = req.body;
 
-  if (!userId || !subject || !body || !recipients || recipients.length === 0) {
-    return res.status(400).json({ message: 'User ID, subject, body, and recipients are required.' });
+  if (!subject || !body || !recipients || recipients.length === 0) {
+    return res.status(400).json({ message: 'Subject, body, and recipients are required.' });
   }
 
   try {
-    // Fetch user's Google tokens from the database
+    // Fetch authenticated user's Google tokens
     const [rows] = await pool.query('SELECT googleTokens FROM users WHERE id = ?', [userId]);
 
     if (rows.length === 0 || !rows[0].googleTokens) {
@@ -37,16 +37,20 @@ router.post('/send-email', async (req, res) => {
     // Refresh the access token if needed
     const { token } = await oauth2Client.getAccessToken();
 
-    // Create raw email message
+    // 🔹 Ensure recipients are joined correctly with commas
+    const recipientList = recipients.map((email) => `<${email}>`).join(', ');
+
+    // 🔹 Construct properly formatted email content
     const emailContent = [
-      `To: ${recipients.join(',')}`,
-      'Subject: ' + subject,
+      `To: ${recipientList}`, // Correct email format
+      `Subject: ${subject}`,
       'MIME-Version: 1.0',
       'Content-Type: text/plain; charset="UTF-8"',
       '',
       body
-    ].join('\n');
+    ].join('\r\n');
 
+    // Encode the message for Gmail API
     const encodedMessage = Buffer.from(emailContent)
       .toString('base64')
       .replace(/\+/g, '-')
@@ -60,11 +64,12 @@ router.post('/send-email', async (req, res) => {
       },
     });
 
-    res.status(200).json({ message: 'Email sent successfully using Gmail API!' });
+    res.status(200).json({ message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);
     res.status(500).json({ message: 'Failed to send email.', error: error.message });
   }
 });
+
 
 module.exports = router;
