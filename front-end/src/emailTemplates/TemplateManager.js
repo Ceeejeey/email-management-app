@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../utils/axiosConfig'; // Custom axios instance with credentials
 import Cookies from 'js-cookie'; // Import js-cookie
-import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
+import { jwtDecode } from 'jwt-decode'; // Import jwt-decode
+import { toast } from 'react-toastify';  // Import React Toastify for notifications
+import 'react-toastify/dist/ReactToastify.css';
 import './TemplateManager.css';
 
-const TemplateManager = ({accessToken}) => {
+const TemplateManager = ({ accessToken }) => {
   const [templates, setTemplates] = useState([]); // Store templates
   const [selectedFile, setSelectedFile] = useState(null); // Store uploaded file
   const [templateContent, setTemplateContent] = useState(''); // Template content for viewing/editing
@@ -15,14 +17,23 @@ const TemplateManager = ({accessToken}) => {
   const [emailBody, setEmailBody] = useState(''); // Email body for sending
   const [recipients, setRecipients] = useState(''); // Recipients (comma-separated or group)
   const [userEmail, setUserEmail] = useState('');
+  const [contacts, setContacts] = useState([]);
   const [userId, setUserId] = useState('');
-  
+  const [groups, setGroups] = useState([]);
+  const [selectedRecipients, setSelectedRecipients] = useState([]);
+
+
   // Fetch templates on mount
   useEffect(() => {
+
+    if (isSendModalOpen) {
+      fetchContacts();
+      fetchGroups();
+    }
     const decodeToken = () => {
       try {
         // Retrieve the token from cookies
-        const token =  accessToken// Use the cookie name where the token is stored
+        const token = accessToken// Use the cookie name where the token is stored
         console.log('token:', token);
         if (token) {
           const decoded = jwtDecode(token); // Decode the token
@@ -36,7 +47,53 @@ const TemplateManager = ({accessToken}) => {
 
     decodeToken();
     fetchTemplates();
-  }, []);
+  }, [isSendModalOpen]);
+
+  const fetchContacts = async () => {
+    try {
+      const response = await axios.get('/api/contacts', { withCredentials: true });
+      setContacts(response.data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    }
+  };
+
+  // Fetch all groups
+  const fetchGroups = async () => {
+    try {
+      const response = await axios.get('/api/groups', { withCredentials: true });
+      setGroups(response.data);
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+    }
+  };
+  // Handle selection of individual contacts
+  const toggleContactSelection = (contact) => {
+    setSelectedRecipients((prev) =>
+      prev.find((c) => c.email === contact.email)
+        ? prev.filter((c) => c.email !== contact.email)
+        : [...prev, contact]
+    );
+  };
+
+  // Handle selection of groups
+  const toggleGroupSelection = async (groupId) => {
+    try {
+      const response = await axios.get(`/api/groups/${groupId}/contacts`, { withCredentials: true });
+      const groupContacts = response.data;
+
+      setSelectedRecipients((prev) => {
+        const emailsInGroup = groupContacts.map((c) => c.email);
+        const alreadySelected = prev.some((c) => emailsInGroup.includes(c.email));
+
+        return alreadySelected
+          ? prev.filter((c) => !emailsInGroup.includes(c.email))
+          : [...prev, ...groupContacts.filter((c) => !prev.some((p) => p.email === c.email))];
+      });
+    } catch (error) {
+      console.error('Error fetching group contacts:', error);
+    }
+  };
 
   // Fetch all templates from the backend
   const fetchTemplates = async () => {
@@ -124,29 +181,28 @@ const TemplateManager = ({accessToken}) => {
   };
 
   // Handle email sending
-  const handleSendEmail = async () => {
-    if (!emailSubject || !emailBody || !recipients) {
-      alert('Please fill out all fields!');
-      return;
-    }
-
+  const handleSendEmail = async (recipients, subject, body) => {
     try {
-      await axios.post('/api/send-email', {
-        senderEmail: userEmail,
-        subject: emailSubject,
-        body: emailBody,
-        recipients: recipients.split(','), // Send recipients as an array
-        userId: userId,
+      const response = await axios.post('/api/send-email', {
+        recipients, 
+        subject,
+        body,
+        userId
       }, { withCredentials: true });
-
-      alert('Email sent successfully!');
-      setIsSendModalOpen(false); // Close modal after sending
+  
+      console.log('Email sent successfully:', response.data);
+      
+      // 🔹 Show success notification
+      toast.success('  ✅ Email sent successfully!', { position: 'top-right' });
+  
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Failed to send email.');
+      
+      // 🔹 Show error notification
+      toast.error(' ❌ Failed to send email. Please try again.', { position: 'top-right' });
     }
   };
-
+  
   return (
     <div className="template-manager">
       <h2>Template Manager</h2>
@@ -216,34 +272,81 @@ const TemplateManager = ({accessToken}) => {
         </table>
       </div>
 
-      {/* Send Template Modal */}
       {isSendModalOpen && (
         <div className="template-modal">
           <div className="modal-content">
-            <h3>Send Email</h3>
-            <input
-              type="text"
-              placeholder="Email Subject"
-              value={emailSubject}
-              onChange={(e) => setEmailSubject(e.target.value)}
-            />
-            <textarea
-              placeholder="Email Body"
-              value={emailBody}
-              onChange={(e) => setEmailBody(e.target.value)}
-              rows="10"
-            />
-            <input
-              type="text"
-              placeholder="Recipients (comma-separated)"
-              value={recipients}
-              onChange={(e) => setRecipients(e.target.value)}
-            />
-            <button onClick={handleSendEmail}>Send</button>
-            <button onClick={() => setIsSendModalOpen(false)}>Cancel</button>
+
+            {/* Left Column: Email Content & Selected Recipients */}
+            <div className="modal-left">
+              <h3>Send Email</h3>
+
+              {/* Subject */}
+              <input
+                type="text"
+                placeholder="Email Subject"
+                value={emailSubject}
+                onChange={(e) => setEmailSubject(e.target.value)}
+              />
+
+              {/* Email Body */}
+              <textarea
+                placeholder="Email Body"
+                value={emailBody}
+                onChange={(e) => setEmailBody(e.target.value)}
+              />
+
+              {/* Selected Recipients */}
+              <h4>Selected Recipients:</h4>
+              <div className="selected-recipients">
+                {selectedRecipients.map((contact) => (
+                  <span key={contact.email} className="recipient-tag">
+                    {contact.name} ({contact.email})
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Contacts & Groups Selection */}
+            <div className="modal-right">
+
+              {/* Contacts Selection */}
+              <h4>Select Contacts:</h4>
+              <div className="contacts-list">
+                {contacts.map((contact) => (
+                  <label key={contact.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedRecipients.some((c) => c.email === contact.email)}
+                      onChange={() => toggleContactSelection(contact)}
+                    />
+                    {contact.name} ({contact.email})
+                  </label>
+                ))}
+              </div>
+
+              {/* Groups Selection */}
+              <h4>Select Groups:</h4>
+              <div className="groups-list">
+                {groups.map((group) => (
+                  <label key={group.id}>
+                    <input type="checkbox" onChange={() => toggleGroupSelection(group.id)} />
+                    {group.name}
+                  </label>
+                ))}
+              </div>
+
+              {/* Buttons (Bottom Right) */}
+              <div className="modal-buttons">
+                <button onClick={() => handleSendEmail(selectedRecipients.map((c) => c.email), emailSubject, emailBody)}>Send</button>
+                <button onClick={() => setIsSendModalOpen(false)}>Cancel</button>
+              </div>
+            </div>
+
           </div>
         </div>
       )}
+
+
     </div>
   );
 };

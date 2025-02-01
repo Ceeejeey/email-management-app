@@ -3,6 +3,8 @@ import ContactsManager from '../Contacts/ContactsManager';
 import GroupsManager from '../Contacts/GroupManager';
 import TemplateManager from '../emailTemplates/TemplateManager';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -65,6 +67,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+       <ToastContainer /> 
       {/* Navbar */}
       <nav className="navbar">
         <h1>Dashboard</h1>
